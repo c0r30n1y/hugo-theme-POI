@@ -1,0 +1,13 @@
+
+{{/*< quote 
+  quote="To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment."
+  cite="Ralph Waldo Emerson"
+  url="https://example.com/ralph"
+>*/}}
+
+
+<video controls muted playsinline preload="metadata">
+  <source src='{{ .Get "url" }}' type='video/{{ .Get "format" }}'>
+  Your browser does not support the video tag.
+</video>
+

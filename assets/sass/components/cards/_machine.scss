@@ -1,0 +1,103 @@
+@use '../../abstracts/mixins' as *;
+@use '../../abstracts/placeholders' as *;
+@use '../../abstracts/functions' as *;
+
+.card {
+  &__machine-project,
+  &__machine-post {
+    margin: 1rem 0;
+    a {
+      text-decoration: none;
+    }
+  }
+  &__machine-project {
+    font-size: 1rem;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+    .title {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      word-break: break-all;
+      &.inactive {
+        color: var(--text-color--link);
+      }
+      .dot {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.5rem;
+        border-radius: 50%;
+        &.active {
+          background-color: var(--brand-color);
+          animation: glow 2s ease-in-out infinite;
+          @include reduced-motion {
+            animation: none;
+          }
+        }
+        &.inactive {
+          background-color: var(--text-color--link);
+        }
+      }
+    }
+    .status {
+      padding-right: 1rem;
+      text-transform: uppercase;
+      .label {
+        padding: 0 px2rem(6px) 0 1rem;
+        color: var(--bg-color);
+        background-color: var(--text-color);
+      }
+      .text {
+        margin-left: px2rem(6px);
+      }
+      &.active .text {
+        color: var(--brand-color);
+        text-shadow: 0 0 2px var(--brand-color--shadow);
+      }
+    }
+    // These elements are in the HTML but are not styled
+    // .summary {}
+    // .links {}
+    div:not(.status) {
+      padding: 0 1rem;
+      &:first-of-type {
+        padding-top: 1rem;
+      }
+      &:last-of-type {
+        padding-bottom: 1rem;
+      }
+    }
+    p {
+      margin: 0;
+      span {
+        color: var(--text-color--link);
+      }
+    }
+    hr {
+      border-top: 1px solid var(--text-color);
+      box-shadow: 0 0 15px var(--text-color--shadow);
+    }
+  }
+  &__machine-post {
+    background-color: var(--bg-color--entry);
+    transition: transform 0.1s ease, box-shadow 0.1s ease; /* 添加过渡效果 */
+    @include hocus {
+      transform: scale(1.02); /* 鼠标悬浮时放大 5% */
+      box-shadow: 0 4px 10px #404654; /* 可选：添加阴影效果，增强视觉效果 */
+    }
+    padding: px2rem(6px) px2rem(12px);
+    border: 10px solid var(--bg-color--entry);
+    border-radius: 5px;
+    .date {
+      font-size: 0.825rem;
+      color: var(--text-color--secondary);
+    }
+    .title {
+      @extend %h2;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{{ define "background"}}
+    <div class="bg-layer__1"></div>
+    <div class="bg-layer__2"></div>
+{{ end }}
+
+{{ define "main"}}
+	<div class="container" itemprop="mainContentOfPage" itemscope role="article">
+		<article id="main" tabindex="-1">
+			{{ partial "title.html" . }}
+			<hr aria-hidden="true">
+			<div class="row">
+				<div class="col order-1">
+					<div itemprop="articleBody">
+						{{ partial "blog/outdated.html" . }}
+						{{ .Content }}
+					</div>
+				</div>
+				<div class="col-3 order-2">
+					<nav aria-label="On This Page">
+						<span class="toc-title">On This Page</span>
+						{{ .TableOfContents }}
+					</nav>
+				</div>
+			</div>
+			<hr aria-hidden="true">
+		</article>
+		<footer>
+      {{- partial "blog/footer.html" . -}}
+  	</footer>
+	</div>
+{{ end }}

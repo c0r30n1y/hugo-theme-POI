@@ -1,0 +1,29 @@
+{{/*
+  用法示例：
+  {{ partial "email.html" (dict "user" "name" "domain" "strappazzon.xyz") }}
+*/}}
+
+{{/*
+  Wrap component inside a conditional tag to avoid outputting whitespaces,
+  which create layout problems with Terminal component.
+*/}}
+
+{{ if or .user .domain }}
+  {{/* This means the email is being used in the Terminal component */}}
+  {{ $userArr := split .user "" }}
+  {{ $userRev := newScratch }}
+  {{ range seq (sub (len $userArr) 1) 0 -1 }}
+    {{ $userRev.Add "str" (index $userArr .) }}
+  {{ end }}
+  {{ $user := $userRev.Get "str" }}
+  {{ $domainArr := split .domain "" }}
+  {{ $domainRev := newScratch }}
+  {{ range seq (sub (len $domainArr) 1) 0 -1 }}
+    {{ $domainRev.Add "str" (index $domainArr .) }}
+  {{ end }}
+  {{ $domain := $domainRev.Get "str" }}
+  <span class="email" data-user="{{ $user }}" data-domain="{{ $domain }}"></span>
+{{ else }}
+  {{ $rnd := now.UnixNano | mod 9999 }}
+  <span class="email">{{ site.Params.email.user }}<span>{{ $rnd }}</span>im  [AT] strappazzon [DOT] xyz</span>
+{{ end }}

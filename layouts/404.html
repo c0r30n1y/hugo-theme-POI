@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" data-theme="samaritan">
+<head>
+  <meta charset="utf-8">
+  <title>Not Found</title>
+  <meta name="description" content="404 error page">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="canonical" href="{{ .Site.BaseURL }}404.html">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/img/favicons/favicon.svg" sizes="any">
+  <link rel="apple-touch-icon" href="/img/favicons/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link rel="stylesheet" href="https://fonts.bunny.net/css?family=barlow-semi-condensed:400&display=swap">
+
+  {{ $cssOpts := (dict "transpiler" "dartsass" "targetPath" "css/vendors.css") }}
+  {{ $vendors := resources.Get "css/vendors.scss" | toCSS $cssOpts }}
+  {{ $cssOpts = (dict "transpiler" "dartsass" "targetPath" "css/404.css") }}
+  {{ $page404 := resources.Get "css/404.scss" | toCSS $cssOpts }}
+
+  <link rel="stylesheet" href="{{ $vendors.RelPermalink }}">
+  <link rel="stylesheet" href="{{ $page404.RelPermalink }}">
+</head>
+
+<body>
+  <main>
+    <!-- NOTE: Error text embedded directly to bypass Hugo's .Content limitation -->
+    <a id="typewriter" href="/" hidden data-text="CONTENT NOT FOUND. RETURN TO SAFETY." aria-label="Go to the Homepage"></a>
+    <noscript>
+      <a href="/" aria-label="Go to the Homepage">CONTENT NOT FOUND. RETURN TO SAFETY.</a>
+    </noscript>
+    <br>
+    <img src="/img/triangle.png" alt="" draggable="false">
+  </main>
+
+  <!-- @note: This script is loaded after the DOM to avoid blocking rendering and ensure safe element access -->
+  {{ $mainJs := resources.Get "js/typewriter.js" | js.Build }}
+  <script src="{{ $mainJs.RelPermalink }}"></script>
+</body>
+</html>

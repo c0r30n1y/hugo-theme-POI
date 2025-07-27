@@ -1,0 +1,12 @@
+{{ define "background" }}
+	<div class="bg-layer__main"></div>
+{{ end }}
+
+{{ define "main" }}
+	<div class="container-lg" role="main">
+		<main id="main" tabindex="-1" itemprop="mainContentOfPage">
+			{{ partial "cards/samaritan-about.html" . }}
+			{{ partial "cards/samaritan-nav.html" . }}
+		</main>
+	</div>
+{{ end }}

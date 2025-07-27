@@ -1,0 +1,49 @@
+<div class="col-md-6">
+	<div class="card__machine-project">
+		{{/* Comment: When DISCONTINUED or FEATURE-COMPLETE */}}
+		{{ $status := .status }} <!-- 从参数中获取状态 -->
+		{{ if or (eq $status 0) (eq $status 2) }}
+			<div class="title inactive">
+				<span class="dot inactive" aria-hidden="true"></span>
+				<span>{{ .title }}</span>
+			</div>
+			<div class="status inactive">
+				<span class="label">Status:</span>
+				{{ if eq $status 0 }}
+					<span class="text">Discontinued</span>
+				{{ else }}
+					<span class="text">Feature-Complete</span>
+				{{ end }}
+			</div>
+		{{ else }}
+			<div class="title active">
+				<span class="dot active" aria-hidden="true"></span>
+				<span>{{ .title }}</span>
+			</div>
+			<div class="status active">
+				<span class="label">Status:</span>
+				<span class="text">Active</span>
+			</div>
+		{{ end }}
+		<hr aria-hidden="true">
+		<div class="summary">
+			<p>Description: <span>{{ .description }}</span></p>
+			<p>
+				Languages:
+				<span>
+					{{- $comma := "" -}}
+					{{- range .languages -}}
+					    {{ $comma }} {{ . }}
+					    {{- $comma = "," -}}
+					{{- end }}
+				</span>
+			</p>
+		</div>
+		<hr aria-hidden="true">
+		<div class="links">
+			<a href="{{ .url }}" aria-label="{{ .title }} Website">Website</a>
+			&middot;
+			<a href="{{ .source }}" aria-label="{{ .title }} Source Code">Source Code</a>
+		</div>
+	</div>
+</div>

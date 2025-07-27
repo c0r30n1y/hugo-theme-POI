@@ -1,0 +1,10 @@
+@use '../sass/abstracts/_variables';
+@use '../sass/abstracts/_functions';
+@use '../sass/abstracts/_mixins';
+@use '../sass/abstracts/_placeholders';
+@use '../sass/abstracts/_colors';
+
+@use '../sass/base/_animations';
+@use '../sass/base/_base';
+
+@use '../sass/pages/_404' as error404;

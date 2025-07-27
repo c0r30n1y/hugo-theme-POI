@@ -1,0 +1,38 @@
+<div class="card__samaritan-about">
+	<div class="subtitle">
+		<div class="icon__deviant" aria-hidden="true"></div>
+		<span aria-hidden="true">///</span>
+		<span>ABOUT</span>
+	</div>
+	<div class="title">{{ .Site.Params.title | upper }}</div>
+	<div class="content">
+		<div class="content__desc">{{ .Site.Params.description }}</div>
+		{{ if .Site.Params.location }}
+			<div class="content__row">
+				<div class="text">Location:</div>
+				<div class="label">
+					<a href="https://www.wikipedia.org/w/index.php?search={{ .Site.Params.location | urlize }}" aria-label="{{ .Site.Params.location }}">
+						{{ .Site.Params.location }}
+					</a>
+				</div>
+			</div>
+		{{ end }}
+		<div class="content__row">
+			<div class="text">Email:</div>
+			<address class="label">
+				{{/* partial "email.html" . */}}
+				{{ partial "email.html" (dict "user" .Site.Params.email.user "domain" .Site.Params.email.domain) }}
+			</address>
+		</div>
+		{{/* $accounts := .Site.Data.accounts | where "featured" true */}}
+		{{ $accounts := .Site.Data.accounts }}
+		{{ range $accounts }}
+			<div class="content__row">
+				<div class="text">{{ .name }}:</div>
+				<div class="label">
+					<a rel="me" href="{{ .url }}" aria-label="{{ .username }}" translate="no">{{ .username }}</a>
+				</div>
+			</div>
+		{{ end }}
+	</div>
+</div>

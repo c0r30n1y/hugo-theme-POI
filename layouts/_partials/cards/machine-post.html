@@ -1,0 +1,13 @@
+<div class="card__machine-post" onclick="window.location.href='{{ .Permalink }}';" style="cursor: pointer;">
+    <div class="date">
+        <span>
+            {{ .Date.Format "January 2, 2006" }}
+        </span>
+    </div>
+    <div class="title">
+        <span>{{ .Title }}</span>
+    </div>
+    <div class="description">
+        <span>{{ .Summary }}</span>
+    </div>
+</div>

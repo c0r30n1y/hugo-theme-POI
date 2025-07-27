@@ -1,0 +1,22 @@
+<div class="title">
+	<div class="logo" role="presentation">
+		<img src="/img/logo_32.png" height="18px" width="18px" alt="" draggable="false">
+		<span class="separator" aria-hidden="true">///</span>
+	</div>
+	<div class="name">
+		{{ if eq .Layout "blog" }}
+			{{ upper .Site.Params.blog_meta.title }}
+		{{ else }}
+			{{ upper .Site.Params.title }}
+		{{ end }}
+	</div>
+</div>
+<p>Layout: {{ .Layout }} </p>
+{{ if ne .RelPermalink  "/" }}
+	<nav aria-label="Main navigation">
+		{{ if and (eq .Section "blog") (eq .Kind "page")}}
+			<a href="/blog/">Blog</a> |
+		{{ end }}
+		<a href="/" translate="no">Home</a>
+	</nav>
+{{ end }}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang='{{ or .Params.LanguageCode "en-us" }}' dir="ltr" data-theme='{{ or .Params.theme "poi" }}'>
+<head>
+  {{- partial "head.html" . -}}
+  {{- block "head" . -}}{{ end }}
+</head>
+<body>
+  {{- block "background" . -}}{{ end }}
+
+  <a class="sr-skip" href="#main">SKIP TO MAIN CONTENT</a>
+  <header>
+    {{- partial "header.html" . -}}
+    {{- block "header" . -}}{{ end }}
+  </header>
+  <div id="top"></div>
+  
+  {{- block "main" . -}}{{ end }}
+  
+</body>
+</html>

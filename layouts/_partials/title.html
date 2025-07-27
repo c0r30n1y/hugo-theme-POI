@@ -1,0 +1,21 @@
+<div class="container__title">
+	<hgroup>
+		{{ $title := split (upper .Title) " | " }}
+		{{ if eq .Layout "blog" }}
+			<h1 itemprop="headline" data-tgiv="title">{{ index $title 0 }}</h1>
+			<p itemprop="alternativeHeadline" data-tgiv="subtitle">{{ .Description | upper | truncate 160 "..." }}</p>
+		{{ else }}
+			<h1>{{ index $title 0 }}</h1>
+			<p>
+				{{ if .Params.short_desc }}
+					{{ .Params.short_desc | upper }}
+				{{ else }}
+					{{ replace (upper .Description) "." "" }}
+				{{ end }}
+			</p>
+		{{ end }}
+	</hgroup>
+	{{ if or (.Params.read_time) (eq .Layout "blog") }}
+		{{ partial "reading-time.html" . }}
+	{{ end }}
+</div>

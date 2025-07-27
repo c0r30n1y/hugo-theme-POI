@@ -1,0 +1,17 @@
+<div class="card__samaritan-header">
+	{{ $title := split .Title " | " }}
+	<div class="title">
+		<span class="subtitle" translate="no">SAMARITAN</span>
+		<span class="version">v.978.0.06.51</span>
+	</div>
+	<hgroup>
+		<h1>{{ upper (index $title 0) }}</h1>
+		<p>
+			{{ if .Params.short_desc }}
+				{{ upper .Params.short_desc }}
+			{{ else }}
+				{{ upper (replace .Description "." "") }}
+			{{ end }}
+		</p>
+	</hgroup>
+</div>

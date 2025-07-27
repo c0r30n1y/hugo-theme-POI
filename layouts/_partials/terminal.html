@@ -1,0 +1,143 @@
+<div class="terminal" data-theme="iterm2-tango-dark" aria-hidden="true" translate="no">
+    <div class="terminal__titlebar">
+        <div class="task">
+            <span class="icon__deviant"></span>
+            <span class="separator">&nbsp;///&nbsp;</span>
+            <span class="description">
+                Task -
+                {{- $task := .Params.task | default "unknown" -}}
+                {{- if eq $task "pgp" -}}
+                    List PGP Keys
+                {{- else if eq $task "ssh" -}}
+                    List SSH Keys
+                {{- else -}}
+                    Unknown
+                {{- end -}}
+            </span>
+        </div>
+        <div class="dots">
+            <span class="dot minimize"></span>
+            <span class="dot maximize"></span>
+            <span class="dot close"></span>
+        </div>
+    </div>
+    <div class="terminal__content">
+        <span class="output">
+            <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+        </span>
+        {{- if eq $task "pgp" }}
+            gpg <span class="black-bright">--list-keys</span>
+            </span>
+            <span class="output">/home/{{ .Site.Params.first | lower }}/.gnupg/pubring.kbx</span>
+            <span class="output">------------------------------------</span>
+            <span class="output">pub ed25519 2025-01-03 [SC]</span>
+            <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;8FA5794FC74E9EB7486139C58051756399D062FE</span>
+            <span class="output">
+                uid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;unknown]
+                {{ partial "email.html" (dict "user" "im" "domain" "strappazzon.xyz") }}
+                &lt;{{ partial "email.html" (dict "user" "im" "domain" "strappazzon.xyz") }}&gt;
+            </span>
+            <span class="output">sub cv25519 2020-01-03 [E]</span>
+            <span class="output">&#8203;</span>
+            <span class="output">pub ed25519 2020-06-24 [SC]</span>
+            <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;975126E37C9BA907D95FAA5498B160D45D48A6F5</span>
+            <span class="output">
+                uid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;unknown]
+                {{ partial "email.html" (dict "user" "a" "domain" "strappazzon.xyz") }}
+                &lt;{{ partial "email.html" (dict "user" "a" "domain" "strappazzon.xyz") }}&gt;
+            </span>
+            <span class="output">sub cv25519 2020-06-24 [E]</span>
+            <span class="output">&#8203;</span>
+            <span class="output">pub rsa2048 2018-07-04 [SC]</span>
+            <span class="output">&nbsp;&nbsp;&nbsp;&nbsp;DE55A0A7806F6030347DE10A06897F17310BCC24</span>
+            <span class="output">
+                uid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;unknown]
+                {{ partial "email.html" (dict "user" "strappazzon" "domain" "protonmail.com") }}
+                &lt;{{ partial "email.html" (dict "user" "strappazzon" "domain" "protonmail.com") }}&gt;
+            </span>
+            <span class="output">sub rsa2048 2018-07-04 [E]</span>
+            <span class="output">&#8203;</span>
+            <span class="output">
+                <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+                wget
+                <span class="black-bright">-q</span>
+                <span class="black-bright">--show-progress</span>
+                <span class="green">
+                    "<a href="/pgp/strappazzon_im.asc" title="Download PGP Key">{{ printf "%s/pgp/strappazzon_im.asc" .Site.BaseURL }}</a>"
+                </span>
+            </span>
+            <span class="output">
+                <span>strappazzon_im.asc</span>
+                <span>100%[==============================>]</span>
+                <span>836</span>
+                <span>--.-KB/s</span>
+                <span>in 0s</span>
+            </span>
+            <span class="output">&#8203;</span>
+            <span class="output">
+                <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+                wget
+                <span class="black-bright">-q</span>
+                <span class="black-bright">--show-progress</span>
+                <span class="green">
+                    "<a href="/pgp/strappazzon_a.asc" title="Download PGP Key">{{ printf "%s/pgp/strappazzon_a.asc" .Site.BaseURL }}</a>"
+                </span>
+            </span>
+            <span class="output">
+                <span>strappazzon_a.asc</span>
+                <span>100%[==============================>]</span>
+                <span>644</span>
+                <span>--.-KB/s</span>
+                <span>in 0s</span>
+            </span>
+            <span class="output">&#8203;</span>
+            <span class="output">
+                <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+                wget
+                <span class="black-bright">-q</span>
+                <span class="black-bright">--show-progress</span>
+                <span class="green">
+                    "<a href="/pgp/strappazzon_pm.asc" title="Download PGP Key">{{ printf "%s/pgp/strappazzon_pm.asc" .Site.BaseURL }}</a>"
+                </span>
+            </span>
+            <span class="output">
+                <span>strappazzon_pm.asc</span>
+                <span>100%[==============================>]</span>
+                <span>1.72K</span>
+                <span>--.-KB/s</span>
+                <span>in 0s</span>
+            </span>
+        {{- else if eq $task "ssh" }}
+            ssh-add <span class="black-bright">-L</span>
+            </span>
+            <span class="output">
+                ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoe78QsVbl0J8+INuZqGkJma2eyfEF7Jz/xcMNd/0Mo
+            </span>
+            <span class="output">
+                <span>&#8203;</span>
+            </span>
+            <span class="output">
+                <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+                ssh-add
+                <span class="black-bright">-L</span>
+                | ssh-keygen
+                <span class="black-bright">-E</span>
+                sha256
+                <span class="black-bright">-lf</span>
+                /dev/stdin
+            </span>
+            <span class="output">
+                256 SHA256:OTNv2ZGzpR2fGB0HhX6s91WS/b36fD4K3w9Hh+aYFxs (ED25519)
+            </span>
+        {{- else }}
+            </span>
+        {{- end }}
+        <span class="output">
+            <span>&#8203;</span>
+        </span>
+        <span class="output">
+            <span class="yellow">{{ .Site.Params.first | lower }}@{{ .Site.Params.last | lower }}:</span><span class="blue">~/{{ replaceRE "^/" "" .Page.URL }}</span>$
+            <span class="cursor underline"></span>
+        </span>
+    </div>
+</div>

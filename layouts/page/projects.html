@@ -1,0 +1,29 @@
+{{ define "background" }}
+    <div class="bg-layer__1"></div>
+    <div class="bg-layer__2"></div>
+{{ end }}
+
+{{ define "main" }}
+    <div class="container-lg" role="main">
+        <main id="main" tabindex="-1" itemprop="mainContentOfPage" itemscope>
+            {{ if eq .Params.theme "samaritan" }}
+                {{ partial "title-samaritan.html" . }}
+            {{ else }}
+                {{ partial "title.html" . }}
+                <hr aria-hidden="true">
+            {{ end }}
+            <div class="row">
+                {{ $projects := .Site.Data.projects }}
+                {{ range $i, $project := $projects }}
+                    {{ partial "cards/machine-project.html" $project }}
+                {{ end }}
+            </div>
+            {{ .Content }}
+            <hr aria-hidden="true">
+            {{ if eq .RelPermalink "/music/" }}
+                {{ partial "pages/music/footer.html" . }}
+            {{ end }}
+        </main>
+    </div>
+{{ end }}
+

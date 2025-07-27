@@ -1,0 +1,9 @@
+.admonition {
+  &.info,
+  &.note,
+  &.tip {
+    .title {
+      color: var(--text-color);
+    }
+  }
+}

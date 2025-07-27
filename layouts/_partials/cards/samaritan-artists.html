@@ -1,0 +1,38 @@
+{{ $topArtist := index .Params.artists 0 }}
+<div class="col-lg-6">
+	<div class="card__samaritan-artists">
+		<div class="subtitle">
+			<span>YEAR {{ .Params.year }}</span>
+		</div>
+		<div class="content">
+			<div class="image">
+				<!-- ARTIST NAME -> artist-name -->
+				<img src="/img/pages/{{ .Page.URL | relURL }}/{{ $topArtist | lower | replace " " "-" }}.jpg" alt="{{ $topArtist }}" width="150px" draggable="false">
+			</div>
+			<div class="container__artists">
+				<div class="top-artist">
+					<span>TOP ARTIST:</span>
+					<a href="https://last.fm/music/{{ $topArtist | urlize | replace "%20" "+" }}" target="_blank" class="name" translate="no">{{ $topArtist | upper }}</a>
+				</div>
+				<div class="container__list">
+					<span class="title">OTHER ARTISTS</span>
+					<hr>
+					<ul translate="no">
+						{{ range .Params.artists }}
+							{{ $artist := . }}
+							{{ if gt (index $artist 1).is_new 0 }}
+								<li class="text__color-green">
+							{{ else if gt (index $artist 1).is_returning 0 }}
+								<li class="text__color-yellow">
+							{{ else }}
+								<li>
+							{{ end }}
+							<a href="https://last.fm/music/{{ $artist | urlize | replace "%20" "+" }}" target="_blank">{{ index $artist 0 }}</a>
+							</li>
+						{{ end }}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

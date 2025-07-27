@@ -1,0 +1,125 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+.terminal {
+  // stylelint-disable unit-disallowed-list
+  $border-radius: 5px;
+  $scrollbar-w: 10px;
+  // stylelint-enable unit-disallowed-list
+  width: px2rem(650px);
+  margin: 0 auto 1rem;
+  font-size: 0.875rem;
+  scrollbar-width: #{$scrollbar-w};
+  border: 1px solid var(--border-color);
+  border-radius: calc(#{$border-radius} + 1px);
+  @include respond-to('large') {
+    width: 100%;
+  }
+  ::-webkit-scrollbar {
+    width: #{$scrollbar-w};
+  }
+  &__titlebar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 1.75rem;
+    padding: px2rem(4px) px2rem(8px);
+    line-height: 1.2;
+    background: linear-gradient(180deg, var(--gradient-color--from) 25%, var(--gradient-color--to) 75%);
+    border-bottom: 1px solid var(--border-color);
+    border-top-left-radius: #{$border-radius};
+    border-top-right-radius: #{$border-radius};
+    .task {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      .separator {
+        text-shadow: 1px 1px 2px var(--text-color--shadow);
+      }
+      .description {
+        color: var(--brand-color);
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px var(--brand-color--shadow);
+      }
+    }
+    .dots {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 0.75em;
+      .dot {
+        $size: px2rem(8px);
+        display: block;
+        width: #{$size};
+        height: #{$size};
+        border-radius: 50%;
+        box-shadow: 1px 1px 2px var(--button-color--shadow);
+        &.minimize {
+          background-color: var(--button-color--minimize);
+        }
+        &.maximize {
+          background-color: var(--button-color--maximize);
+        }
+        &.close {
+          background-color: var(--button-color--close);
+        }
+      }
+    }
+  }
+  &__content {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: px2rem(350px);
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    font-family: $font-stack-code;
+    border-bottom-right-radius: #{$border-radius};
+    border-bottom-left-radius: #{$border-radius};
+    .output {
+      margin: 0 px2rem(6px);
+      word-break: break-all;
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      &:first-child {
+        margin-top: px2rem(6px);
+      }
+      &:last-child {
+        margin-bottom: px2rem(6px);
+      }
+      a {
+        text-decoration: none;
+        @include hocus {
+          color: currentColor;
+          text-decoration: underline;
+        }
+      }
+      .cursor {
+        animation: blink 1s infinite;
+        @include reduced-motion {
+          animation: none;
+        }
+        &.block {
+          font-size: 0.825em;
+          &::before {
+            // Full Block
+            content: '\002588';
+          }
+        }
+        &.line {
+          &::before {
+            // Left Vertical Box Line
+            content: '\0023B8';
+          }
+        }
+        &.underline {
+          &::before {
+            // Low Line
+            content: '\005F';
+          }
+        }
+      }
+    }
+  }
+}

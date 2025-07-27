@@ -1,0 +1,9 @@
+.admonition {
+  &.caution,
+  &.danger {
+    .title {
+      color: var(--text-color--red);
+      text-shadow: 2px 2px 6px var(--brand-color--shadow);
+    }
+  }
+}

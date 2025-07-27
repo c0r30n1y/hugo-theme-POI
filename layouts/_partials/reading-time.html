@@ -1,0 +1,13 @@
+{%- comment -%} reading_time.rb plugin {%- endcomment -%}
+
+<span class="read-time">
+    阅读时间：
+    {{ $minutes := div (add (countwords .Content) 199) 200 }}
+    {{ if lt $minutes 1 }}
+        少于 1 分钟
+    {{ else if eq $minutes 1 }}
+        1 分钟
+    {{ else }}
+        {{ $minutes }} 分钟
+    {{ end }}
+</span>

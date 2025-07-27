@@ -1,0 +1,21 @@
+<div class="card__samaritan-nav">
+    <div class="title">LINKS</div>
+    <nav class="content" aria-label="Main Navigation">
+        <div class="subtitle">
+            <span>WEBSITE PAGE</span>
+            <span>PATH</span>
+        </div>
+        {{ range .Site.Data.nav }}
+            {{ if not .hide }}
+                <div class="content__row">
+                    <div class="text">{{ .name }}</div>
+                    <div class="label">
+                        <a href="{{ .path }}" aria-label="{{ with .description }}{{ . }}{{ else }}{{ .name }}{{ end }}" translate="no">
+                            {{ .path }}
+                        </a>
+                    </div>
+                </div>
+            {{ end }}
+        {{ end }}
+    </nav>
+</div>

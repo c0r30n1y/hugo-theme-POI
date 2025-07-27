@@ -1,0 +1,8 @@
+{{/*< video url="/videos/17.mp4" format="mp4" >*/}}
+
+<blockquote {{ with .Get "url" }} cite="{{ . | safeURL }}"{{ end }}>
+  <p>{{ .Get "quote" | markdownify }}</p>
+  {{ with .Get "cite" }}
+    <footer>&hyphen;<cite>{{ . }}</cite></footer>
+  {{ end }}
+</blockquote>

@@ -1,0 +1,272 @@
+@use '../../abstracts/functions' as *;
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+.card {
+  &__samaritan-about,
+  &__samaritan-nav,
+  &__samaritan-header {
+    margin: 0 px2em(15px, $font-size-small) px2em(15px, $font-size-small);
+  }
+  &__samaritan-about,
+  &__samaritan-nav {
+    display: flex;
+    flex-direction: column;
+    padding: px2em(5px, $font-size-small);
+    color: var(--text-color);
+    word-wrap: break-word;
+    a {
+      text-decoration: none;
+    }
+    // Card title
+    .title,
+    .subtitle {
+      background-color: var(--bg-color--light);
+    }
+    .title {
+      text-align: center;
+      text-shadow: 1px 1px 2px var(--text-color--shadow);
+    }
+    .content {
+      padding: px2em(5px, $font-size-small) 0;
+      background-color: var(--bg-color--lighter);
+      &__row {
+        display: flex;
+        flex-flow: row wrap;
+        place-content: center space-between;
+        align-items: center;
+        // min-height: 2rem;
+        .label,
+        .text {
+          padding: px2em(2px, $font-size-small) px2em(5px, $font-size-small);
+        }
+        .text {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+  &__samaritan-about,
+  &__samaritan-artists {
+    // Card title
+    .subtitle {
+      width: max-content;
+      font-size: 0.85rem;
+    }
+  }
+  &__samaritan-about {
+    // Card title
+    .subtitle {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding-right: 1em;
+      padding-left: 0.75em;
+      span {
+        margin-left: px2em(4px, $font-size-small);
+      }
+    }
+    // Full name
+    .title {
+      margin-top: px2em(5px, $font-size-small);
+      font-size: px2em(20px, $font-size-small);
+      background-color: var(--brand-color--dark);
+    }
+    .content {
+      &__row,
+      &__desc {
+        margin: px2em(10px, $font-size-small);
+        border: px2em(2px, $font-size-small) solid var(--border-color--dark);
+      }
+      // Bio
+      &__desc {
+        min-height: 2rem;
+        padding: px2em(5px, $font-size-small);
+        padding-top: px2em(3px, $font-size-small);
+        text-align: center;
+      }
+      &__row {
+        .label {
+          color: var(--bg-color);
+          background-color: var(--bg-color--lightest);
+          &:not(address) {
+            text-transform: uppercase;
+          }
+          a {
+            @include hocus {
+              color: var(--brand-color--dark);
+            }
+          }
+        }
+      }
+    }
+  }
+  &__samaritan-nav {
+    // Card title
+    .title {
+      width: px2em(66px, $font-size-small);
+    }
+    // Card description
+    .subtitle {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      padding: 0.15em 1em;
+      font-size: 0.875em;
+    }
+    .content {
+      margin-top: px2em(5px, $font-size-small);
+      &__row {
+        flex-flow: row nowrap;
+        margin: px2em(5px, $font-size-small) px2em(10px, $font-size-small);
+        .text {
+          overflow: hidden;
+          // https://stackoverflow.com/a/17783233
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        // stylelint-disable-next-line no-descending-specificity
+        .label {
+          background-color: var(--bg-color);
+        }
+      }
+    }
+  }
+  &__samaritan-header {
+    border: 2px solid var(--text-color);
+    .title {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 0.5em;
+      color: var(--bg-color);
+      background-color: var(--text-color--shadow);
+      .subtitle {
+        margin-right: 1em;
+        font-weight: 700;
+      }
+      .version {
+        font-size: 0.75em;
+        color: var(--scrollbar-color);
+      }
+    }
+    hgroup {
+      padding: 0.5em;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      h1 {
+        max-width: fit-content;
+        padding: 0 0.33em;
+        margin-bottom: 0.25em;
+        font-size: 2em;
+        font-weight: 700;
+        color: var(--text-color);
+        // Reset the default text shadow of <h1> elements
+        text-shadow: unset;
+        background-color: var(--brand-color--shadow);
+      }
+      p {
+        margin-bottom: 0;
+        font-size: 1.15em;
+        font-weight: 400;
+      }
+    }
+  }
+  &__samaritan-artists {
+    margin: 1rem 0;
+    // Border: https://static.wikia.nocookie.net/pediaofinterest/images/6/6a/POI_0501_SPOV_Enlisting_Civilian_Assets_1.png
+    &::after {
+      display: block;
+      width: 100%;
+      margin-top: px2rem(2px);
+      content: "";
+      border-bottom: 2px solid var(--border-color--dark);
+    }
+    // Card title
+    /* stylelint-disable-next-line no-descending-specificity */
+    .subtitle {
+      padding: 0 0.5em;
+      font-weight: 700;
+      color: var(--brand-color);
+      text-shadow: 0 0 2px var(--brand-color--shadow);
+      background-color: var(--bg-color);
+    }
+    .content {
+      display: flex;
+      flex-wrap: nowrap;
+      padding: px2rem(6px);
+      background-color: var(--bg-color--light);
+      border-top: 1px solid var(--border-color--dark);
+      border-bottom: 1px solid var(--border-color--dark);
+      .image {
+        padding: px2rem(4px);
+        margin-right: px2rem(3px);
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color--clear);
+        border-radius: 4px;
+        @include respond-to('smaller') {
+          display: none;
+        }
+        img {
+          height: 100%;
+          vertical-align: middle;
+          object-fit: cover;
+          opacity: 0.9;
+        }
+      }
+      .container__artists {
+        width: 100%;
+        padding: 0.75em;
+        margin-left: px2rem(3px);
+        border: 1px solid var(--border-color--clear);
+        @include respond-to('smaller') {
+          border: 0;
+        }
+        .top-artist {
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5em;
+          span {
+            font-size: 1.2em;
+          }
+          .name {
+            padding: 0 0.5em;
+            font-size: 1.5em;
+            text-decoration: none;
+            background-color: var(--bg-color);
+            @include respond-to('large') {
+              font-size: 1.2em;
+            }
+          }
+        }
+        .container__list {
+          hr {
+            margin: 0.1em 0;
+            border-top: 1px solid var(--border-color--clear);
+            box-shadow: unset;
+          }
+          .title {
+            width: max-content;
+            padding: 0 0.33em;
+            color: var(--bg-color);
+            background-color: var(--text-color);
+          }
+          ul {
+            margin: 0;
+            li {
+              &::before {
+                content: unset;
+              }
+              a {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
