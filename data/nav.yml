@@ -7,8 +7,8 @@
   description: My Open-Source Projects
   path: /projects/
 
-- name: Tags
-  path: /tags/
-
-- name: Archives
-  path: /archives/
+# - name: Tags
+#   path: /tags/
+# 
+# - name: Archives
+#   path: /archives/
