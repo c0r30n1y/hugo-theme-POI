@@ -9,7 +9,7 @@
 ///     color: rgba(211, 211, 211, 1);
 ///   }
 @mixin color-scheme($scheme) {
-  @if list-index(dark light, $scheme) {
+  @if list.index(dark light, $scheme) {
     @media screen and (prefers-color-scheme: $scheme) {
       @content;
     }
@@ -57,6 +57,6 @@
       @content;
     }
   } @else {
-    @error 'No value found for #{$breakpoint}. Available breakpoints are: #{map-keys($breakpoints)}.';
+    @error 'No value found for #{$breakpoint}. Available breakpoints are: #{map.keys($breakpoints)}.';
   }
 }

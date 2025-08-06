@@ -1,5 +1,5 @@
 @use '../../abstracts/variables' as *;
 
 [class^='card__'] {
-  font-size: $font-size-small;
+  font-size: px2rem(16px);
 }
